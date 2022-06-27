@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>USAF Sentry Bot Control Interface v0.04</title>
+   <meta charset="utf-8"/>
+<!--Bootstrap-->
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!--Customizable CSS Stylesheet-->	
+   <link rel="stylesheet" href="style.css">
+ </head>
+ 
+ <!--Body-->	
+ <body>
+ 
+<p>Welcome to Munich Treaty Organization Termlink</p>
+<br/><br/><br/>
+<div id="typewriter"></div>
+ 
+ 
+ 
+<script>
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
+}
+
+var clickSound;
+clickSound = new sound("Click.mp3");
+
+var str = "<p>...Accessing systems...<br/>...Initializing unit...<br/>...Loading assigned subroutlines...<br/><br\>Please advise any personnel standing near the unit to make way.<br/><br/><br/> > Booting Sequence Confirmed</p>",
+    i = 0,
+    isTag,
+    text;
+
+(function type() {
+    text = str.slice(0, ++i);
+    if (text === str){
+    document.location.href = "ActivateSequenceStatic.html"};
+    
+    document.getElementById('typewriter').innerHTML = text;
+
+    var char = text.slice(-1);
+    if( char === '<' ) isTag = true;
+    if( char === '>' ) isTag = false;
+
+    if (isTag) return type();
+	clickSound.play();
+    setTimeout(type, 30);
+}());
+
+</script>
+ 
+ </body>
+</html>
